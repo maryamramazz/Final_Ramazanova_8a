@@ -29,7 +29,7 @@ def get_order_by_track():
     return requests.get(configuration.BASE_URL + configuration.GET_ORDER_TRACK + "?t=" + track_value)
 
 
-# Команда для вывода ответа с статус кодом
+# Команда для вывода ответа со статус кодом
 response = get_order_by_track()
 print(response.json())
-# print(response.status_code)
+print(response.status_code)
