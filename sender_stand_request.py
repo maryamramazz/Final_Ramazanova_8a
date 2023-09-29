@@ -11,7 +11,7 @@ def post_new_order(body):
 
 
 # Команда для вывода ответа с треком и статус кодом
-response = post_new_order(data.track_body)
+response = post_new_order(data.track_value)
 track = response.json()["track"]
 print(response.status_code)
 print(response.json()["track"])
@@ -20,13 +20,16 @@ print(track)
 
 #  Зарос к API на получение заказа по треку
 def get_order_by_track():
-#    track = ["track"]
-#    t = {"t": track}
-    return requests.get(configuration.BASE_URL + configuration.GET_ORDER_TRACK,
-                        params=track)
+    resp = post_new_order(data.order_body)
+    #  Команда для приведения значения трэка к типу Строка
+    track_value = str(resp.json()["track"])
+    headers_param = data.headers.copy()
+    headers_param["track"] = track_value
+
+    return requests.get(configuration.BASE_URL + configuration.GET_ORDER_TRACK + "?t=" + track_value)
 
 
 # Команда для вывода ответа с статус кодом
 response = get_order_by_track()
 print(response.json())
-#print(response.status_code)
+# print(response.status_code)
