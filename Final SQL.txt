@@ -14,15 +14,14 @@ WHERE o."inDelivery"=true
 GROUP BY c.login;
 
 Задание №1 (Вариант II исправленный)
+Наставник сказал, что COUNT("inDelivery"), как в первом варианте тоже допустимо, но я все таки переделаю для зачета
 
 SELECT c.login,
-COUNT(o.id) AS number_of_orders
+COUNT(*) AS number_of_orders
 FROM "Couriers" as c
 LEFT JOIN "Orders" AS o ON c."id" = o."courierId"
 WHERE o."inDelivery"=true
 GROUP BY c.login;
-
-
 
 
 Задание №2
